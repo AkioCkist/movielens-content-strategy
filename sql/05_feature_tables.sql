@@ -12,6 +12,26 @@ USE movielens_strategy;
 SET SESSION max_execution_time = 0;
 
 -- =====================================================================
+-- 12.0 User segments write-back target
+-- =====================================================================
+-- KNIME writes the K-Means clustering result into this table after this
+-- script completes. Recreate it so every feature-table run starts with a
+-- clean target for the next model run.
+DROP TABLE IF EXISTS user_segments;
+
+CREATE TABLE user_segments (
+    user_id INT UNSIGNED NOT NULL,
+    cluster_id INT NOT NULL,
+    segment_name VARCHAR(100) NOT NULL,
+    distance_to_centroid DECIMAL(18,8) NULL,
+    model_version VARCHAR(50) NOT NULL,
+    model_run_date DATETIME NOT NULL,
+    PRIMARY KEY (user_id),
+    INDEX idx_user_segments_cluster (cluster_id),
+    INDEX idx_user_segments_version (model_version)
+) ENGINE = InnoDB;
+
+-- =====================================================================
 -- 12.1 User statistics
 -- =====================================================================
 DROP TABLE IF EXISTS train_user_stats_staging;

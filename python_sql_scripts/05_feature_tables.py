@@ -91,6 +91,20 @@ BUILDS = [
     ),
 ]
 
+USER_SEGMENTS_DDL = """
+CREATE TABLE user_segments (
+    user_id INT UNSIGNED NOT NULL,
+    cluster_id INT NOT NULL,
+    segment_name VARCHAR(100) NOT NULL,
+    distance_to_centroid DECIMAL(18,8) NULL,
+    model_version VARCHAR(50) NOT NULL,
+    model_run_date DATETIME NOT NULL,
+    PRIMARY KEY (user_id),
+    INDEX idx_user_segments_cluster (cluster_id),
+    INDEX idx_user_segments_version (model_version)
+) ENGINE=InnoDB
+"""
+
 RUBRIC_QUERIES = [
     (
         "High ratings since 2005 (sample)",
@@ -169,6 +183,8 @@ def main() -> None:
         if args.queries_only:
             run_rubric_queries(connection)
             return
+        execute(connection, "DROP TABLE IF EXISTS user_segments")
+        execute(connection, USER_SEGMENTS_DDL)
         require_tables(connection, ("ratings", "rating_split", "movie_genres"))
         publish: list[tuple[str, str]] = []
         for target, create_sql, insert_sql in BUILDS:
@@ -195,4 +211,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
