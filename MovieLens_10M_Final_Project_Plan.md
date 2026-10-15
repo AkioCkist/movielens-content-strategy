@@ -776,6 +776,26 @@ USE movielens_strategy;
 
 -- Disable the server-side statement time limit for this session.
 SET SESSION max_execution_time = 0;
+
+-- =====================================================================
+-- 12.0 User segments write-back target
+-- =====================================================================
+-- KNIME writes the K-Means clustering result into this table after this
+-- script completes. Recreate it so every feature-table run starts with a
+-- clean target for the next model run.
+DROP TABLE IF EXISTS user_segments;
+
+CREATE TABLE user_segments (
+    user_id INT UNSIGNED NOT NULL,
+    cluster_id INT NOT NULL,
+    segment_name VARCHAR(100) NOT NULL,
+    distance_to_centroid DECIMAL(18,8) NULL,
+    model_version VARCHAR(50) NOT NULL,
+    model_run_date DATETIME NOT NULL,
+    PRIMARY KEY (user_id),
+    INDEX idx_user_segments_cluster (cluster_id),
+    INDEX idx_user_segments_version (model_version)
+) ENGINE = InnoDB;
 ```
 
 ### 12.1 User statistics — `train_user_stats`
@@ -1307,6 +1327,8 @@ ORDER BY t.data_split;
 
 Tạo workflow mới `movielens_like_prediction`. Copy node `00 MySQL Credentials` và `01 Connect to MovieLens MySQL` từ workflow K-Means sang.
 
+> **Đã có sẵn:** `knime/movielens_like_prediction.knwf` dựng đúng theo section 17–18 (49 node, đã đặt tên và annotation). Import bằng *File → Import KNIME Workflow*, mở node `01 Connect to MovieLens MySQL` nhập password MySQL (file không lưu password), rồi execute theo thứ tự trong annotation. Khác biệt so với bảng dưới: không có node Credentials Configuration và ROC Curve (AUC đã được tính bằng SQL ở 18.2; muốn có hình ROC thì thêm node *ROC Curve* nối sau node `10 Threshold`); Column Filter của bước 07 được thay bằng phần chọn feature ngay trong Learner.
+
 ### 17.0 Sơ đồ tổng thể
 
 ```text
@@ -1340,7 +1362,7 @@ WHERE data_split = 'TRAIN'
 |---|---|---|---|
 | 4 | **Missing Value** | `04 Missing Value` | `user_rating_stddev`, `movie_rating_stddev` → *Fix Value* `0` (hoặc *Median*). Output thứ 2 (PMML) là "công thức" để áp lại cho VALID/TEST |
 | 5 | **Math Formula** ×3 | `05 Log-transform Counts` | `ln(1 + $user_activity$)`, `ln(1 + $movie_popularity$)`, `ln(1 + $user_active_days$)`, mỗi node *Replace Column* |
-| 6 | **Normalizer** | `06 Normalizer` | Z-Score · chỉ chọn các cột liên tục: `user_prior_avg_rating`, `user_prior_positive_rate`, `user_activity`, `user_rating_stddev`, `user_active_days`, `movie_prior_avg_rating`, `movie_prior_positive_rate`, `movie_popularity`, `movie_rating_stddev` · **không** chọn cờ `genre_*` |
+| 6 | **Normalizer (PMML)** | `06 Normalizer` | Z-Score · chỉ chọn các cột liên tục: `user_prior_avg_rating`, `user_prior_positive_rate`, `user_activity`, `user_rating_stddev`, `user_active_days`, `movie_prior_avg_rating`, `movie_prior_positive_rate`, `movie_popularity`, `movie_rating_stddev` · **không** chọn cờ `genre_*` |
 | 7 | **Column Filter** | `07 Select Model Features` | **Bỏ** `rating_id`, `user_id`, `movie_id`, `data_split`, `liked`, `cluster_id` (đã có `cluster_label`) |
 
 ### 17.3 Learner
@@ -1358,7 +1380,7 @@ Output 2 của Learner là **coefficient table** (`Variable`, `Coeff.`, `Std. Er
 | 10 | **DB Query Reader** | `10 Read VALID` | `SELECT * FROM ml_rating_features WHERE data_split = 'VALID'` |
 | — | copy node 3a, 3b, 5 | | Cấu hình giữ nguyên |
 | 10b | **Missing Value (Apply)** | `10 Apply Missing Value` | Input model: output PMML của node 4 |
-| 10c | **Normalizer (Apply)** | `10 Apply Normalizer` | Input model: output model của node 6 (**không** fit lại trên VALID) |
+| 10c | **Normalizer Apply (PMML)** | `10 Apply Normalizer` | Input model: output PMML của node 6 (**không** fit lại trên VALID) |
 | 11 | **Logistic Regression Predictor** | `11 Predict VALID` | Model: output 1 của node 8 · tick **Append columns with predicted probabilities** → có cột `P (liked_label=1)` |
 | 12 | **Rule Engine** | `12 Apply Threshold` | `$P (liked_label=1)$ >= 0.5 => "1"` · `TRUE => "0"` · *Append*: `predicted_label` |
 | 13 | **Scorer** | `13 Scorer VALID` | First column `liked_label`, second column `predicted_label` |
@@ -1412,7 +1434,7 @@ Không diễn giải coefficient thành quan hệ nhân quả.
 
 | # | Node | Tên node | Cấu hình |
 |---|---|---|---|
-| 25a | **Math Formula** | `25 Predicted as Integer` | `if($P (liked_label=1)$ >= 0.5, 1, 0)` (dùng threshold đã chọn) · tick *Convert to Int* · *Append*: `predicted_liked` |
+| 25a | **String Manipulation** | `25 Predicted as Integer` | `toInt($predicted_label$)` · *Append*: `predicted_liked` (threshold chỉ cần đặt một chỗ: node Rule Engine) |
 | 25b | **Column Rename** | `25 Rename Output Columns` | `liked` → `actual_liked` · `P (liked_label=1)` → `probability_liked` |
 | 25c | **Constant Value Column** ×2 | `25 Add Version and Date` | `model_version` = `logit_v1` · `model_run_date` = `2026-10-15 10:00:00` (String) |
 | 25d | **Column Filter** | `25 Keep Output Columns` | Đúng 10 cột: `rating_id`, `user_id`, `movie_id`, `cluster_id`, `actual_liked`, `predicted_liked`, `probability_liked`, `data_split`, `model_version`, `model_run_date` |
