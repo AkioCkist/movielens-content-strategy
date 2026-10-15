@@ -63,3 +63,65 @@ FROM (
     GROUP BY user_id
     HAVING COUNT(*) < 20
 ) AS user_counts;
+
+-- Completeness: NULL hoặc rỗng
+SELECT
+  SUM(title IS NULL OR TRIM(title) = '')   AS empty_titles,
+  SUM(genres IS NULL OR TRIM(genres) = '') AS empty_genres,
+  SUM(genres = '(no genres listed)')       AS no_genre_movies,
+  SUM(title NOT REGEXP '\\([0-9]{4}\\)[[:space:]]*$') AS titles_without_year
+FROM movies;
+
+SELECT SUM(tag_text IS NULL OR TRIM(tag_text) = '') AS empty_tags,
+       COUNT(DISTINCT LOWER(TRIM(tag_text)))           AS distinct_tags_normalised,
+       COUNT(DISTINCT tag_text)                        AS distinct_tags_raw
+FROM tags;
+
+-- Uniqueness: tổng số cặp user-movie bị lặp
+SELECT COUNT(*) AS duplicate_pairs
+FROM (SELECT user_id, movie_id FROM ratings
+      GROUP BY user_id, movie_id HAVING COUNT(*) > 1) d;
+
+-- Plausibility / outliers
+SELECT COUNT(*) AS movies_with_lt_5_ratings
+FROM (SELECT movie_id FROM ratings GROUP BY movie_id HAVING COUNT(*) < 5) x;
+
+SELECT MAX(c) AS max_ratings_per_user,
+       AVG(c) AS avg_ratings_per_user
+FROM (SELECT COUNT(*) c FROM ratings GROUP BY user_id) u;
+
+-- Consistency: phim không có rating nào
+SELECT COUNT(*) AS movies_without_ratings
+FROM movies m LEFT JOIN (SELECT DISTINCT movie_id FROM ratings) r
+  ON r.movie_id = m.movie_id
+WHERE r.movie_id IS NULL;-- Completeness: NULL hoặc rỗng
+SELECT
+  SUM(title IS NULL OR TRIM(title) = '')   AS empty_titles,
+  SUM(genres IS NULL OR TRIM(genres) = '') AS empty_genres,
+  SUM(genres = '(no genres listed)')       AS no_genre_movies,
+  SUM(title NOT REGEXP '\\([0-9]{4}\\)[[:space:]]*$') AS titles_without_year
+FROM movies;
+
+SELECT SUM(tag_text IS NULL OR TRIM(tag_text) = '') AS empty_tags,
+       COUNT(DISTINCT LOWER(TRIM(tag_text)))           AS distinct_tags_normalised,
+       COUNT(DISTINCT tag_text)                        AS distinct_tags_raw
+FROM tags;
+
+-- Uniqueness: tổng số cặp user-movie bị lặp
+SELECT COUNT(*) AS duplicate_pairs
+FROM (SELECT user_id, movie_id FROM ratings
+      GROUP BY user_id, movie_id HAVING COUNT(*) > 1) d;
+
+-- Plausibility / outliers
+SELECT COUNT(*) AS movies_with_lt_5_ratings
+FROM (SELECT movie_id FROM ratings GROUP BY movie_id HAVING COUNT(*) < 5) x;
+
+SELECT MAX(c) AS max_ratings_per_user,
+       AVG(c) AS avg_ratings_per_user
+FROM (SELECT COUNT(*) c FROM ratings GROUP BY user_id) u;
+
+-- Consistency: phim không có rating nào
+SELECT COUNT(*) AS movies_without_ratings
+FROM movies m LEFT JOIN (SELECT DISTINCT movie_id FROM ratings) r
+  ON r.movie_id = m.movie_id
+WHERE r.movie_id IS NULL;
