@@ -1,5 +1,10 @@
 -- MovieLens Content Strategy
 -- MySQL 8.x schema. Run this script before loading the raw .dat files.
+-- Mirrors python_sql_scripts/01_create_schema.py.
+--
+-- Secondary indexes are declared inside CREATE TABLE so they are built while
+-- the empty tables are filled. This avoids a separate CREATE INDEX over 10M
+-- existing rows, which exceeded the 900-second Workbench read timeout.
 
 CREATE DATABASE IF NOT EXISTS movielens_strategy
     CHARACTER SET utf8mb4
@@ -20,7 +25,12 @@ CREATE TABLE IF NOT EXISTS ratings (
     movie_id INT UNSIGNED NOT NULL,
     rating DECIMAL(2,1) NOT NULL,
     rating_ts INT UNSIGNED NOT NULL,
-    PRIMARY KEY (rating_id)
+    PRIMARY KEY (rating_id),
+    INDEX idx_ratings_user (user_id),
+    INDEX idx_ratings_movie (movie_id),
+    -- InnoDB appends the primary key, so this index is ordered by
+    -- (rating_ts, rating_id): the exact order of the chronological split.
+    INDEX idx_ratings_ts (rating_ts)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS tags (
@@ -29,9 +39,12 @@ CREATE TABLE IF NOT EXISTS tags (
     movie_id INT UNSIGNED NOT NULL,
     tag_text VARCHAR(500) NOT NULL,
     tag_ts INT UNSIGNED NOT NULL,
-    PRIMARY KEY (tag_id)
+    PRIMARY KEY (tag_id),
+    INDEX idx_tags_user (user_id),
+    INDEX idx_tags_movie (movie_id)
 ) ENGINE = InnoDB;
 
+-- The primary key (movie_id, genre) already serves lookups by movie_id.
 CREATE TABLE IF NOT EXISTS movie_genres (
     movie_id INT UNSIGNED NOT NULL,
     genre VARCHAR(50) NOT NULL,

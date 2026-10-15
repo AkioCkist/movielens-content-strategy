@@ -19,6 +19,43 @@ VIEWS = [
     ) ra
     """,
     """
+    CREATE OR REPLACE VIEW dashboard_rating_distribution AS
+    SELECT rating, COUNT(*) rating_count,
+           COUNT(*) / SUM(COUNT(*)) OVER () rating_share
+    FROM ratings GROUP BY rating
+    """,
+    # Same optimised query as rubric query 3 in 05_feature_tables.py.
+    """
+    CREATE OR REPLACE VIEW dashboard_genre_kpis AS
+    SELECT mg.genre,
+           CAST(SUM(ma.rating_count) AS UNSIGNED) rating_count,
+           SUM(ma.rating_sum)/SUM(ma.rating_count) avg_rating,
+           SUM(ma.positive_count)/SUM(ma.rating_count) positive_rate
+    FROM (
+        SELECT /*+ NO_INDEX(ratings) */
+               movie_id, COUNT(*) rating_count, SUM(rating) rating_sum,
+               SUM(rating>=4.0) positive_count
+        FROM ratings GROUP BY movie_id
+    ) ma
+    JOIN movie_genres mg ON mg.movie_id=ma.movie_id
+    GROUP BY mg.genre
+    """,
+    """
+    CREATE OR REPLACE VIEW dashboard_movie_popularity AS
+    SELECT m.movie_id, m.title, m.genres, ms.rating_count, ms.avg_rating, ms.positive_rate
+    FROM train_movie_stats ms JOIN movies m ON m.movie_id=ms.movie_id
+    WHERE ms.rating_count>=100
+    """,
+    # Joins 10M rows (a few minutes); the split only changes when step 4 reruns.
+    """
+    CREATE OR REPLACE VIEW dashboard_split_summary AS
+    SELECT s.data_split, COUNT(*) rows_in_split,
+           FROM_UNIXTIME(MIN(r.rating_ts)) period_start,
+           FROM_UNIXTIME(MAX(r.rating_ts)) period_end
+    FROM rating_split s JOIN ratings r ON r.rating_id=s.rating_id
+    GROUP BY s.data_split
+    """,
+    """
     CREATE OR REPLACE VIEW dashboard_segment_profiles AS
     SELECT seg.cluster_id, seg.segment_name, COUNT(*) user_count,
            AVG(us.rating_count) avg_user_ratings, AVG(us.avg_rating) avg_rating,
@@ -54,6 +91,13 @@ VIEWS = [
     GROUP BY rp.model_version, rp.cluster_id, seg.segment_name, rp.movie_id, m.title, m.genres,
              ms.rating_count, ms.avg_rating
     """,
+    # Four rows per model version and split instead of millions of predictions.
+    """
+    CREATE OR REPLACE VIEW dashboard_confusion_matrix AS
+    SELECT model_version, data_split, actual_liked, predicted_liked, COUNT(*) row_count
+    FROM rating_predictions
+    GROUP BY model_version, data_split, actual_liked, predicted_liked
+    """,
     """
     CREATE OR REPLACE VIEW dashboard_model_metrics AS
     SELECT model_name, model_version, split_name, metric_name, metric_value, run_timestamp
@@ -66,15 +110,19 @@ def main() -> None:
     with db() as connection:
         require_tables(
             connection,
-            ("ratings", "movies", "tags", "user_segments", "train_user_stats",
-             "train_user_genre_stats", "rating_predictions", "train_movie_stats", "model_metrics"),
+            ("ratings", "movies", "tags", "movie_genres", "rating_split", "user_segments",
+             "train_user_stats", "train_user_genre_stats", "rating_predictions",
+             "train_movie_stats", "model_metrics"),
         )
         for statement in VIEWS:
             execute(connection, statement)
         results = []
         for view in (
-            "dashboard_kpis", "dashboard_segment_profiles", "dashboard_segment_genres",
-            "dashboard_content_opportunities", "dashboard_model_metrics",
+            "dashboard_kpis", "dashboard_rating_distribution", "dashboard_genre_kpis",
+            "dashboard_movie_popularity", "dashboard_split_summary",
+            "dashboard_segment_profiles", "dashboard_segment_genres",
+            "dashboard_content_opportunities", "dashboard_confusion_matrix",
+            "dashboard_model_metrics",
         ):
             columns, rows = run_timed(
                 f"query {view}",

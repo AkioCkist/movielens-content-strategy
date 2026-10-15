@@ -1,6 +1,11 @@
 -- MovieLens Content Strategy
--- Replace DATA_DIR with the extracted ml-10M100K directory on the local machine.
+-- Load the raw .dat files. Mirrors python_sql_scripts/02_load_data.py.
+-- Replace the paths with the extracted ml-10M100K directory on the local machine.
 -- MySQL Workbench must be configured with OPT_LOCAL_INFILE=1.
+-- Run on EMPTY tables only: LOAD DATA appends, so re-running duplicates rows.
+-- To reload deliberately, TRUNCATE movies, ratings, tags, movie_genres first,
+-- then rerun 04_create_splits.sql and 05_feature_tables.sql.
+-- Indexes already exist from 01_create_schema.sql; no CREATE INDEX is needed.
 
 USE movielens_strategy;
 
@@ -42,15 +47,8 @@ SET
     tag_text = @tag_text,
     tag_ts = CAST(TRIM(TRAILING '\r' FROM @tag_ts) AS UNSIGNED);
 
--- Secondary indexes are created after bulk loading for faster imports.
-CREATE INDEX idx_ratings_user ON ratings(user_id);
-CREATE INDEX idx_ratings_movie ON ratings(movie_id);
-CREATE INDEX idx_ratings_ts ON ratings(rating_ts);
-CREATE INDEX idx_ratings_user_ts ON ratings(user_id, rating_ts);
-CREATE INDEX idx_ratings_movie_ts ON ratings(movie_id, rating_ts);
-CREATE INDEX idx_tags_user ON tags(user_id);
-CREATE INDEX idx_tags_movie ON tags(movie_id);
-
+-- One row per (movie, genre). The Python script splits the same '|' list in
+-- Python; both produce identical rows. INSERT IGNORE makes it safe to rerun.
 INSERT IGNORE INTO movie_genres (movie_id, genre)
 SELECT
     m.movie_id,
@@ -63,7 +61,7 @@ JOIN JSON_TABLE(
     )
 ) AS jt;
 
-SELECT COUNT(*) AS movie_rows FROM movies;
-SELECT COUNT(*) AS rating_rows FROM ratings;
-SELECT COUNT(*) AS tag_rows FROM tags;
-SELECT COUNT(*) AS movie_genre_rows FROM movie_genres;
+SELECT 'movies' AS table_name, COUNT(*) AS row_count FROM movies
+UNION ALL SELECT 'ratings', COUNT(*) FROM ratings
+UNION ALL SELECT 'tags', COUNT(*) FROM tags
+UNION ALL SELECT 'movie_genres', COUNT(*) FROM movie_genres;
