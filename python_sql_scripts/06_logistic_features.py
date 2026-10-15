@@ -21,6 +21,21 @@ def main() -> None:
         )
         if int(scalar(connection, "SELECT COUNT(*) FROM user_segments")) == 0:
             raise RuntimeError("user_segments is empty; run the KNIME clustering write-back first")
+        # A DB Writer with "Remove existing table" recreates user_segments with
+        # cluster_id as text ('cluster_0'); joins to the INT cluster_id in
+        # rating_predictions then silently match nothing.
+        cluster_type = scalar(
+            connection,
+            "SELECT DATA_TYPE FROM information_schema.columns "
+            "WHERE table_schema = DATABASE() AND table_name = 'user_segments' "
+            "AND column_name = 'cluster_id'",
+        )
+        if str(cluster_type).lower() not in {"int", "tinyint", "smallint", "mediumint", "bigint"}:
+            raise RuntimeError(
+                f"user_segments.cluster_id is {cluster_type}, expected INT. "
+                "Run sql/migrate_user_segments.sql once, and keep "
+                "'Remove existing table' unticked in the KNIME DB Writer."
+            )
         genre_sql = ",\n".join(
             f"CASE WHEN FIND_IN_SET('{genre}', REPLACE(m.genres, '|', ',')) > 0 "
             f"THEN 1 ELSE 0 END AS genre_{alias}"
