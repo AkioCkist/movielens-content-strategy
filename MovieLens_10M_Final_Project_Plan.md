@@ -578,14 +578,24 @@ ALTER TABLE train_user_genre_stats
 ### 12.4 KPI SQL queries cho rubric
 
 ```sql
--- Filtering
+CREATE INDEX idx_ratings_movie_id
+ON ratings (movie_id);
+
+CREATE INDEX idx_movie_genres_movie_id
+ON movie_genres (movie_id);
+
+USE movielens_strategy;
+-- Tắt giới hạn thời gian thực thi cho session MySQL hiện tại
+SET SESSION max_execution_time = 0;
+
+-- 1. Filtering
 SELECT *
 FROM ratings
 WHERE rating >= 4.0
   AND rating_ts >= UNIX_TIMESTAMP('2005-01-01')
 LIMIT 100;
 
--- Grouping/aggregation
+-- 2. Grouping / aggregation
 SELECT
     rating,
     COUNT(*) AS rating_count,
@@ -594,18 +604,19 @@ FROM ratings
 GROUP BY rating
 ORDER BY rating;
 
--- Join + KPI
+-- 3. Join + KPI theo genre
 SELECT
     mg.genre,
     COUNT(*) AS rating_count,
     AVG(r.rating) AS avg_rating,
     AVG(CASE WHEN r.rating >= 4 THEN 1.0 ELSE 0.0 END) AS positive_rate
 FROM ratings AS r
-JOIN movie_genres AS mg ON mg.movie_id = r.movie_id
+JOIN movie_genres AS mg
+    ON mg.movie_id = r.movie_id
 GROUP BY mg.genre
 ORDER BY rating_count DESC;
 
--- Movie popularity with minimum support
+-- 4. Movie popularity with minimum support
 SELECT
     m.movie_id,
     m.title,
@@ -613,7 +624,8 @@ SELECT
     ms.avg_rating,
     ms.positive_rate
 FROM train_movie_stats AS ms
-JOIN movies AS m ON m.movie_id = ms.movie_id
+JOIN movies AS m
+    ON m.movie_id = ms.movie_id
 WHERE ms.rating_count >= 100
 ORDER BY ms.avg_rating DESC, ms.rating_count DESC
 LIMIT 20;

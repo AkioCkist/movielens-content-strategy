@@ -4,3 +4,5 @@ data/ml-10M100K/
 *.tmp
 .env
 credentials*
+__pycache__/
+*.pyc
