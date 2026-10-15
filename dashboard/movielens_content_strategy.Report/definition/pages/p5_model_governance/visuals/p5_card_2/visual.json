@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p5_card_2",
+  "position": {
+    "x": 960,
+    "y": 240,
+    "z": 5000,
+    "width": 140,
+    "height": 120,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Lift vs Baseline"
+                }
+              },
+              "queryRef": "_Measures.Lift vs Baseline",
+              "nativeQueryRef": "Lift vs Baseline"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lift'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

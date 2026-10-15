@@ -1,0 +1,84 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p2_segment_size",
+  "position": {
+    "x": 20,
+    "y": 110,
+    "z": 2000,
+    "width": 420,
+    "height": 290,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_segment_profiles"
+                    }
+                  },
+                  "Property": "segment_name"
+                }
+              },
+              "queryRef": "dashboard_segment_profiles.segment_name",
+              "nativeQueryRef": "segment_name",
+              "displayName": "Segment"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "user_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_segment_profiles.user_count)",
+              "nativeQueryRef": "Sum of user_count",
+              "displayName": "Users"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Users per segment'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

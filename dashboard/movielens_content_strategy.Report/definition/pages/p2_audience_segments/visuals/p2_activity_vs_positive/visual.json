@@ -1,0 +1,132 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p2_activity_vs_positive",
+  "position": {
+    "x": 460,
+    "y": 110,
+    "z": 3000,
+    "width": 400,
+    "height": 290,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_segment_profiles"
+                    }
+                  },
+                  "Property": "segment_name"
+                }
+              },
+              "queryRef": "dashboard_segment_profiles.segment_name",
+              "nativeQueryRef": "segment_name",
+              "displayName": "Segment"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_user_ratings"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_user_ratings)",
+              "nativeQueryRef": "Avg of avg_user_ratings",
+              "displayName": "Avg TRAIN ratings per user"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_positive_rate"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_positive_rate)",
+              "nativeQueryRef": "Avg of avg_positive_rate",
+              "displayName": "Avg positive rate"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "user_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_segment_profiles.user_count)",
+              "nativeQueryRef": "Sum of user_count",
+              "displayName": "Users"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Activity vs positive rate'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

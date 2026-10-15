@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "p1_executive_overview",
+    "p2_audience_segments",
+    "p3_engagement_model",
+    "p4_content_opportunity",
+    "p5_model_governance"
+  ],
+  "activePageName": "p1_executive_overview"
+}

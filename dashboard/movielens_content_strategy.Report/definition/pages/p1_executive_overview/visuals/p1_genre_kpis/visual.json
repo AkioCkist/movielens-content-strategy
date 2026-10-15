@@ -1,0 +1,151 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p1_genre_kpis",
+  "position": {
+    "x": 650,
+    "y": 140,
+    "z": 7000,
+    "width": 610,
+    "height": 270,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_genre_kpis"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "dashboard_genre_kpis.genre",
+              "nativeQueryRef": "genre",
+              "displayName": "Genre"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_genre_kpis"
+                        }
+                      },
+                      "Property": "rating_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_genre_kpis.rating_count)",
+              "nativeQueryRef": "Sum of rating_count",
+              "displayName": "Ratings"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_genre_kpis"
+                        }
+                      },
+                      "Property": "avg_rating"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_genre_kpis.avg_rating)",
+              "nativeQueryRef": "Avg of avg_rating",
+              "displayName": "Average rating"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_genre_kpis"
+                        }
+                      },
+                      "Property": "positive_rate"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_genre_kpis.positive_rate)",
+              "nativeQueryRef": "Avg of positive_rate",
+              "displayName": "Positive rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "dashboard_genre_kpis"
+                      }
+                    },
+                    "Property": "rating_count"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ratings by genre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

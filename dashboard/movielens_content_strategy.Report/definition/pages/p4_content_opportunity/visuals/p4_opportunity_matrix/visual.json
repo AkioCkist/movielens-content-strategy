@@ -1,0 +1,164 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p4_opportunity_matrix",
+  "position": {
+    "x": 20,
+    "y": 110,
+    "z": 4000,
+    "width": 800,
+    "height": 590,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_content_opportunities"
+                    }
+                  },
+                  "Property": "title"
+                }
+              },
+              "queryRef": "dashboard_content_opportunities.title",
+              "nativeQueryRef": "title",
+              "displayName": "Movie"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Train Popularity"
+                }
+              },
+              "queryRef": "_Measures.Train Popularity",
+              "nativeQueryRef": "Train Popularity",
+              "displayName": "TRAIN popularity (ratings)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Predicted Like (Supported)"
+                }
+              },
+              "queryRef": "_Measures.Predicted Like (Supported)",
+              "nativeQueryRef": "Predicted Like (Supported)",
+              "displayName": "Predicted like probability"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Test Support"
+                }
+              },
+              "queryRef": "_Measures.Test Support",
+              "nativeQueryRef": "Test Support",
+              "displayName": "TEST support"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Actual Positive Rate"
+                }
+              },
+              "queryRef": "_Measures.Actual Positive Rate",
+              "nativeQueryRef": "Actual Positive Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Calibration Gap"
+                }
+              },
+              "queryRef": "_Measures.Calibration Gap",
+              "nativeQueryRef": "Calibration Gap"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "axisScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "'log'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Content Opportunity Matrix: low popularity + high predicted like = hidden opportunity'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

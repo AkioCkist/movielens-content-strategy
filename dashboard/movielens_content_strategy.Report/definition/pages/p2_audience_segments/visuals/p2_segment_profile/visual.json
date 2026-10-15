@@ -1,0 +1,180 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p2_segment_profile",
+  "position": {
+    "x": 20,
+    "y": 420,
+    "z": 5000,
+    "width": 620,
+    "height": 280,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_segment_profiles"
+                    }
+                  },
+                  "Property": "segment_name"
+                }
+              },
+              "queryRef": "dashboard_segment_profiles.segment_name",
+              "nativeQueryRef": "segment_name",
+              "displayName": "Segment"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "user_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_segment_profiles.user_count)",
+              "nativeQueryRef": "Sum of user_count",
+              "displayName": "Users"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_user_ratings"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_user_ratings)",
+              "nativeQueryRef": "Avg of avg_user_ratings",
+              "displayName": "Ratings / user"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_rating"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_rating)",
+              "nativeQueryRef": "Avg of avg_rating",
+              "displayName": "Avg rating"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_positive_rate"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_positive_rate)",
+              "nativeQueryRef": "Avg of avg_positive_rate",
+              "displayName": "Positive rate"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_rating_stddev"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_rating_stddev)",
+              "nativeQueryRef": "Avg of avg_rating_stddev",
+              "displayName": "Rating stddev"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "avg_active_days"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dashboard_segment_profiles.avg_active_days)",
+              "nativeQueryRef": "Avg of avg_active_days",
+              "displayName": "Active days"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Segment profile (TRAIN)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

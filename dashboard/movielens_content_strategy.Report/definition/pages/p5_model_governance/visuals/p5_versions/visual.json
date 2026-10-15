@@ -1,0 +1,95 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p5_versions",
+  "position": {
+    "x": 660,
+    "y": 20,
+    "z": 1000,
+    "width": 600,
+    "height": 200,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_model_metrics"
+                    }
+                  },
+                  "Property": "model_name"
+                }
+              },
+              "queryRef": "dashboard_model_metrics.model_name",
+              "nativeQueryRef": "model_name",
+              "displayName": "Model"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_model_metrics"
+                    }
+                  },
+                  "Property": "model_version"
+                }
+              },
+              "queryRef": "dashboard_model_metrics.model_version",
+              "nativeQueryRef": "model_version",
+              "displayName": "Version"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_model_metrics"
+                        }
+                      },
+                      "Property": "run_timestamp"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Max(dashboard_model_metrics.run_timestamp)",
+              "nativeQueryRef": "Max of run_timestamp",
+              "displayName": "Last run"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Model versions written back to MySQL'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

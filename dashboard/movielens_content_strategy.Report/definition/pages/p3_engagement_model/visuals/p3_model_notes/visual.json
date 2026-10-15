@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p3_model_notes",
+  "position": {
+    "x": 20,
+    "y": 410,
+    "z": 9000,
+    "width": 500,
+    "height": 290,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "How to read this page",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Target: rating >= 4.0 (liked). Features use TRAIN history only; TRAIN rows use leave-one-out."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Compare Accuracy with the majority baseline: the model is only useful if it beats it."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Coefficients show association after controlling for the other features, not causation."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "ROC curve: paste the screenshot from KNIME here (Insert > Image)."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

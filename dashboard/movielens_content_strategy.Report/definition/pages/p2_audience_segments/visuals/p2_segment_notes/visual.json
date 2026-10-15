@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p2_segment_notes",
+  "position": {
+    "x": 880,
+    "y": 110,
+    "z": 4000,
+    "width": 380,
+    "height": 290,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "What each segment means",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Replace this text with the business meaning of each segment, based on the cluster profile"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "table below (KNIME node 14 Profile Clusters). Example: Selective Critics rate many movies"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "but give fewer 4+ ratings, so broad promotion works worse for them."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

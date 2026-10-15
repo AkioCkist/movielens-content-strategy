@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p5_splits",
+  "position": {
+    "x": 20,
+    "y": 20,
+    "z": 0,
+    "width": 620,
+    "height": 200,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_split_summary"
+                    }
+                  },
+                  "Property": "data_split"
+                }
+              },
+              "queryRef": "dashboard_split_summary.data_split",
+              "nativeQueryRef": "data_split",
+              "displayName": "Split"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_split_summary"
+                        }
+                      },
+                      "Property": "rows_in_split"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_split_summary.rows_in_split)",
+              "nativeQueryRef": "Sum of rows_in_split",
+              "displayName": "Rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_split_summary"
+                    }
+                  },
+                  "Property": "period_start"
+                }
+              },
+              "queryRef": "dashboard_split_summary.period_start",
+              "nativeQueryRef": "period_start",
+              "displayName": "From"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_split_summary"
+                    }
+                  },
+                  "Property": "period_end"
+                }
+              },
+              "queryRef": "dashboard_split_summary.period_end",
+              "nativeQueryRef": "period_end",
+              "displayName": "To"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Chronological split (70 / 15 / 15)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

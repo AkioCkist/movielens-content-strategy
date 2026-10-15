@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p3_confusion_matrix",
+  "position": {
+    "x": 20,
+    "y": 130,
+    "z": 7000,
+    "width": 500,
+    "height": 260,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_confusion_matrix"
+                    }
+                  },
+                  "Property": "actual_liked"
+                }
+              },
+              "queryRef": "dashboard_confusion_matrix.actual_liked",
+              "nativeQueryRef": "actual_liked",
+              "displayName": "Actual liked"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_confusion_matrix"
+                    }
+                  },
+                  "Property": "predicted_liked"
+                }
+              },
+              "queryRef": "dashboard_confusion_matrix.predicted_liked",
+              "nativeQueryRef": "predicted_liked",
+              "displayName": "Predicted liked"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Prediction Rows (TEST)"
+                }
+              },
+              "queryRef": "_Measures.Prediction Rows (TEST)",
+              "nativeQueryRef": "Prediction Rows (TEST)",
+              "displayName": "Rows"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Confusion matrix (TEST)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

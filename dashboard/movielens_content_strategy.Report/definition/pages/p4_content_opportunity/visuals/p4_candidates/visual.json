@@ -1,0 +1,138 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p4_candidates",
+  "position": {
+    "x": 840,
+    "y": 110,
+    "z": 5000,
+    "width": 420,
+    "height": 590,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_content_opportunities"
+                    }
+                  },
+                  "Property": "segment_name"
+                }
+              },
+              "queryRef": "dashboard_content_opportunities.segment_name",
+              "nativeQueryRef": "segment_name",
+              "displayName": "Segment"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_content_opportunities"
+                    }
+                  },
+                  "Property": "title"
+                }
+              },
+              "queryRef": "dashboard_content_opportunities.title",
+              "nativeQueryRef": "title",
+              "displayName": "Movie"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Predicted Like (Supported)"
+                }
+              },
+              "queryRef": "_Measures.Predicted Like (Supported)",
+              "nativeQueryRef": "Predicted Like (Supported)",
+              "displayName": "Predicted like"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Test Support (Supported)"
+                }
+              },
+              "queryRef": "_Measures.Test Support (Supported)",
+              "nativeQueryRef": "Test Support (Supported)",
+              "displayName": "TEST support"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Train Popularity (Supported)"
+                }
+              },
+              "queryRef": "_Measures.Train Popularity (Supported)",
+              "nativeQueryRef": "Train Popularity (Supported)",
+              "displayName": "TRAIN popularity"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Measures"
+                  }
+                },
+                "Property": "Predicted Like (Supported)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Candidates (above minimum support)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

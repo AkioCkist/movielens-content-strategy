@@ -1766,6 +1766,15 @@ SELECT * FROM dashboard_model_metrics LIMIT 20;
 
 ## 20. Kết nối Power BI với MySQL
 
+> **Đã có sẵn project Power BI:** `dashboard/movielens_content_strategy.pbip` (sinh bằng `py dashboard/build_pbip.py`) đã gồm đủ các bảng, relationship, measure ở section 20–22 và 5 trang ở section 23.
+> 1. Chạy xong Part C và bước 07 (`py .\python_sql_scripts\run_all.py --from-step 7`).
+> 2. Mở file `.pbip` bằng Power BI Desktop → **Refresh** → nhập user/password MySQL (tab *Database*).
+> 3. Chuột phải bảng `dashboard_split_summary` → *Refresh data* (bảng này không tự refresh, vì join 10M dòng).
+> 4. **File → Save As → Power BI file (.pbix)** → lưu thành `dashboard/movielens_content_strategy.pbix`.
+> 5. Làm thêm bằng tay (chưa có trong file): đường median trong pane *Analytics* của scatter Page 4, màu nền có điều kiện cho matrix heatmap Page 2, ảnh ROC từ KNIME ở Page 3.
+>
+> Các bước dưới đây mô tả cách dựng thủ công, dùng khi muốn hiểu hoặc sửa từng phần.
+
 ### 20.1 Cài driver (làm một lần)
 
 Power BI Desktop cần **MySQL Connector/NET** để đọc MySQL.

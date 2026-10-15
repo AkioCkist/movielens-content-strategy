@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p1_rating_distribution",
+  "position": {
+    "x": 20,
+    "y": 140,
+    "z": 6000,
+    "width": 610,
+    "height": 270,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dashboard_rating_distribution"
+                    }
+                  },
+                  "Property": "rating"
+                }
+              },
+              "queryRef": "dashboard_rating_distribution.rating",
+              "nativeQueryRef": "rating",
+              "displayName": "Rating"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_rating_distribution"
+                        }
+                      },
+                      "Property": "rating_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_rating_distribution.rating_count)",
+              "nativeQueryRef": "Sum of rating_count",
+              "displayName": "Ratings"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_rating_distribution"
+                        }
+                      },
+                      "Property": "rating_share"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_rating_distribution.rating_share)",
+              "nativeQueryRef": "Sum of rating_share",
+              "displayName": "Share"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Rating distribution (all 10M ratings)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

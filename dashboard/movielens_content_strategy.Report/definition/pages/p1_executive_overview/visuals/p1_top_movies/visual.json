@@ -1,0 +1,123 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p1_top_movies",
+  "position": {
+    "x": 20,
+    "y": 430,
+    "z": 8000,
+    "width": 1240,
+    "height": 270,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Top Movies"
+                    }
+                  },
+                  "Property": "title"
+                }
+              },
+              "queryRef": "Top Movies.title",
+              "nativeQueryRef": "title",
+              "displayName": "Movie"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Top Movies"
+                    }
+                  },
+                  "Property": "rating_count"
+                }
+              },
+              "queryRef": "Top Movies.rating_count",
+              "nativeQueryRef": "rating_count",
+              "displayName": "TRAIN ratings"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Top Movies"
+                    }
+                  },
+                  "Property": "avg_rating"
+                }
+              },
+              "queryRef": "Top Movies.avg_rating",
+              "nativeQueryRef": "avg_rating",
+              "displayName": "Average rating"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Top Movies"
+                    }
+                  },
+                  "Property": "positive_rate"
+                }
+              },
+              "queryRef": "Top Movies.positive_rate",
+              "nativeQueryRef": "positive_rate",
+              "displayName": "Positive rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Top Movies"
+                  }
+                },
+                "Property": "avg_rating"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top 20 movies in TRAIN (minimum 100 ratings)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

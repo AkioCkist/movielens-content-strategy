@@ -1,0 +1,57 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "p5_limitations",
+  "position": {
+    "x": 20,
+    "y": 560,
+    "z": 7000,
+    "width": 1240,
+    "height": 140,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Known limitations",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "14pt"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "MovieLens 10M (2009) has no views, exposure, revenue or demographics; positive engagement = rating >= 4.0."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Warm-start only: users and movies without TRAIN history are excluded (see 06 cold-start query)."
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Recommendations are candidates for an A/B test, not proven uplift."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
