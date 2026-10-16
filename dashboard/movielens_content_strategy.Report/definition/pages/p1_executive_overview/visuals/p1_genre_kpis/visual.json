@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p1_genre_kpis",
   "position": {
     "x": 650,
     "y": 140,
     "z": 7000,
-    "width": 610,
     "height": 270,
+    "width": 610,
     "tabOrder": 7000
   },
   "visual": {
@@ -28,31 +28,8 @@
               },
               "queryRef": "dashboard_genre_kpis.genre",
               "nativeQueryRef": "genre",
+              "active": true,
               "displayName": "Genre"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dashboard_genre_kpis"
-                        }
-                      },
-                      "Property": "rating_count"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(dashboard_genre_kpis.rating_count)",
-              "nativeQueryRef": "Sum of rating_count",
-              "displayName": "Ratings"
             }
           ]
         },
@@ -99,6 +76,30 @@
               "displayName": "Positive rate"
             }
           ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_genre_kpis"
+                        }
+                      },
+                      "Property": "rating_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_genre_kpis.rating_count)",
+              "nativeQueryRef": "Sum of rating_count",
+              "displayName": "Ratings"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -121,8 +122,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "visualContainerObjects": {

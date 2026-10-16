@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "movielens_content_strategy"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "e57c9d70-1e45-44a1-b72c-d882c8920734"
+  }
+}

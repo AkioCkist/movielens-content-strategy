@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p4_candidates",
   "position": {
     "x": 840,
     "y": 110,
     "z": 5000,
-    "width": 420,
     "height": 590,
+    "width": 420,
     "tabOrder": 5000
   },
   "visual": {
@@ -108,8 +108,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "visualContainerObjects": {

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p1_rating_distribution",
   "position": {
     "x": 20,
     "y": 140,
     "z": 6000,
-    "width": 610,
     "height": 270,
+    "width": 610,
     "tabOrder": 6000
   },
   "visual": {
@@ -28,31 +28,8 @@
               },
               "queryRef": "dashboard_rating_distribution.rating",
               "nativeQueryRef": "rating",
+              "active": true,
               "displayName": "Rating"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dashboard_rating_distribution"
-                        }
-                      },
-                      "Property": "rating_count"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(dashboard_rating_distribution.rating_count)",
-              "nativeQueryRef": "Sum of rating_count",
-              "displayName": "Ratings"
             }
           ]
         },
@@ -77,6 +54,30 @@
               "queryRef": "Sum(dashboard_rating_distribution.rating_share)",
               "nativeQueryRef": "Sum of rating_share",
               "displayName": "Share"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_rating_distribution"
+                        }
+                      },
+                      "Property": "rating_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_rating_distribution.rating_count)",
+              "nativeQueryRef": "Sum of rating_count",
+              "displayName": "Ratings"
             }
           ]
         }
@@ -104,5 +105,61 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "8d858992b01f57ac1e99",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dashboard_rating_distribution"
+              }
+            },
+            "Property": "rating"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "71471489cd04f7cf5aa6",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dashboard_rating_distribution"
+                  }
+                },
+                "Property": "rating_count"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b62519dfc8db0747389d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dashboard_rating_distribution"
+                  }
+                },
+                "Property": "rating_share"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p5_silhouette",
   "position": {
     "x": 20,
     "y": 240,
     "z": 2000,
-    "width": 620,
     "height": 300,
+    "width": 620,
     "tabOrder": 2000
   },
   "visual": {
@@ -28,6 +28,7 @@
               },
               "queryRef": "dashboard_model_metrics.metric_name",
               "nativeQueryRef": "metric_name",
+              "active": true,
               "displayName": "K"
             }
           ]

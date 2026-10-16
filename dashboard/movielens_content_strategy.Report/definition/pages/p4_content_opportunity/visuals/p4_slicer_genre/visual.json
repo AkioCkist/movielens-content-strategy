@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p4_slicer_genre",
   "position": {
     "x": 520,
     "y": 20,
     "z": 2000,
-    "width": 240,
     "height": 70,
+    "width": 240,
     "tabOrder": 2000
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Genres.genre",
-              "nativeQueryRef": "genre"
+              "nativeQueryRef": "genre",
+              "active": true
             }
           ]
         }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p4_slicer_version",
   "position": {
     "x": 20,
     "y": 20,
     "z": 0,
-    "width": 240,
     "height": 70,
+    "width": 240,
     "tabOrder": 0
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "Model Versions.model_version",
-              "nativeQueryRef": "model_version"
+              "nativeQueryRef": "model_version",
+              "active": true
             }
           ]
         }

@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p2_activity_vs_positive",
   "position": {
     "x": 460,
     "y": 110,
     "z": 3000,
-    "width": 400,
     "height": 290,
+    "width": 400,
     "tabOrder": 3000
   },
   "visual": {
@@ -28,7 +28,32 @@
               },
               "queryRef": "dashboard_segment_profiles.segment_name",
               "nativeQueryRef": "segment_name",
+              "active": true,
               "displayName": "Segment"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dashboard_segment_profiles"
+                        }
+                      },
+                      "Property": "user_count"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dashboard_segment_profiles.user_count)",
+              "nativeQueryRef": "Sum of user_count",
+              "displayName": "Users"
             }
           ]
         },
@@ -52,6 +77,7 @@
               },
               "queryRef": "Avg(dashboard_segment_profiles.avg_user_ratings)",
               "nativeQueryRef": "Avg of avg_user_ratings",
+              "active": true,
               "displayName": "Avg TRAIN ratings per user"
             }
           ]
@@ -77,30 +103,6 @@
               "queryRef": "Avg(dashboard_segment_profiles.avg_positive_rate)",
               "nativeQueryRef": "Avg of avg_positive_rate",
               "displayName": "Avg positive rate"
-            }
-          ]
-        },
-        "Size": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dashboard_segment_profiles"
-                        }
-                      },
-                      "Property": "user_count"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "Sum(dashboard_segment_profiles.user_count)",
-              "nativeQueryRef": "Sum of user_count",
-              "displayName": "Users"
             }
           ]
         }

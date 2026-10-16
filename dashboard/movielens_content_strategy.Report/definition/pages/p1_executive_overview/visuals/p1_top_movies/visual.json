@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p1_top_movies",
   "position": {
     "x": 20,
     "y": 430,
     "z": 8000,
-    "width": 1240,
     "height": 270,
+    "width": 1240,
     "tabOrder": 8000
   },
   "visual": {
@@ -93,8 +93,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "visualContainerObjects": {
@@ -119,5 +118,65 @@
         }
       ]
     }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7ee396fa1056e31fa135",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Top Movies"
+              }
+            },
+            "Property": "title"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fd9c2f26fe9b4f43a6fa",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Top Movies"
+              }
+            },
+            "Property": "rating_count"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "93cf46b632d8bc1ac5b3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Top Movies"
+              }
+            },
+            "Property": "avg_rating"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ee11595c0daec5bfb405",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Top Movies"
+              }
+            },
+            "Property": "positive_rate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

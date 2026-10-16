@@ -1,42 +1,668 @@
 {
-  "name": "movielens_content_strategy",
-  "compatibilityLevel": 1600,
+  "compatibilityLevel": 1606,
   "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"MySQLServer\", \"MySQLDatabase\", \"dashboard_kpis\", \"dashboard_rating_distribution\", \"dashboard_genre_kpis\", \"dashboard_movie_popularity\", \"dashboard_split_summary\", \"dashboard_segment_profiles\", \"dashboard_segment_genres\", \"dashboard_content_opportunities\", \"dashboard_confusion_matrix\", \"dashboard_model_metrics\", \"movie_genres\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "0"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
     "culture": "en-US",
+    "cultures": [
+      {
+        "name": "en-US",
+        "linguisticMetadata": {
+          "content": {
+            "Entities": {
+              "dashboard_confusion_matrix.actual_liked": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_confusion_matrix",
+                    "ConceptualProperty": "actual_liked"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Actual liked": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_confusion_matrix.predicted_liked": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_confusion_matrix",
+                    "ConceptualProperty": "predicted_liked"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Predicted liked": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_content_opportunities.segment_name": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_content_opportunities",
+                    "ConceptualProperty": "segment_name"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Segment": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_content_opportunities.title": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_content_opportunities",
+                    "ConceptualProperty": "title"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Movie": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_genre_kpis.genre": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_genre_kpis",
+                    "ConceptualProperty": "genre"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Genre": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_model_metrics.metric_name": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_model_metrics",
+                    "ConceptualProperty": "metric_name"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Feature": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  },
+                  {
+                    "K": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_model_metrics.model_name": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_model_metrics",
+                    "ConceptualProperty": "model_name"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Model": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_model_metrics.model_version": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_model_metrics",
+                    "ConceptualProperty": "model_version"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Version": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_rating_distribution.rating": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_rating_distribution",
+                    "ConceptualProperty": "rating"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Rating": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_segment_profiles.segment_name": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_segment_profiles",
+                    "ConceptualProperty": "segment_name"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Segment": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_split_summary.data_split": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_split_summary",
+                    "ConceptualProperty": "data_split"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Split": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_split_summary.period_end": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_split_summary",
+                    "ConceptualProperty": "period_end"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "To": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "dashboard_split_summary.period_start": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "dashboard_split_summary",
+                    "ConceptualProperty": "period_start"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "From": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "genres.genre": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Genres",
+                    "ConceptualProperty": "genre"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Genre": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.predicted_like_supported": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Predicted Like (Supported)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Predicted like": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  },
+                  {
+                    "Predicted like probability": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.prediction_rows_test": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Prediction Rows (TEST)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Rows": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.test_support": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Test Support"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "TEST support": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.test_support_supported": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Test Support (Supported)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "TEST support": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.train_popularity": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Train Popularity"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "TRAIN popularity (ratings)": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "table_measures.train_popularity_supported": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "_Measures",
+                    "ConceptualProperty": "Train Popularity (Supported)"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "TRAIN popularity": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "top_movies.avg_rating": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Top Movies",
+                    "ConceptualProperty": "avg_rating"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Average rating": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "top_movies.positive_rate": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Top Movies",
+                    "ConceptualProperty": "positive_rate"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Positive rate": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "top_movies.rating_count": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Top Movies",
+                    "ConceptualProperty": "rating_count"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "TRAIN ratings": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              },
+              "top_movies.title": {
+                "Definition": {
+                  "Binding": {
+                    "ConceptualEntity": "Top Movies",
+                    "ConceptualProperty": "title"
+                  }
+                },
+                "State": "Generated",
+                "Terms": [
+                  {
+                    "Movie": {
+                      "Source": {
+                        "Agent": "PowerBI.VisualColumnRename",
+                        "Type": "External"
+                      },
+                      "State": "Suggested",
+                      "Weight": 0.9
+                    }
+                  }
+                ]
+              }
+            },
+            "Language": "en-US",
+            "Version": "2.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
     "dataAccessOptions": {
       "legacyRedirects": true,
       "returnErrorValuesAsNull": true
     },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "MySQLServer",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"localhost:3306\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
+        "kind": "m",
+        "lineageTag": "898ff97a-ae12-5046-aa16-472d6f6541f4"
+      },
+      {
+        "name": "MySQLDatabase",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Text"
+          }
+        ],
+        "expression": "\"movielens_strategy\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
+        "kind": "m",
+        "lineageTag": "7de089b0-84d2-5453-973e-2ae9cb8dd0f6"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "dadbabc8-6983-5948-917b-1a24a8c82ed5",
+        "fromColumn": "model_version",
+        "fromTable": "dashboard_content_opportunities",
+        "toColumn": "model_version",
+        "toTable": "Model Versions"
+      },
+      {
+        "name": "efc53084-68a6-5272-8447-7f68d1e2f8a8",
+        "fromColumn": "model_version",
+        "fromTable": "dashboard_confusion_matrix",
+        "toColumn": "model_version",
+        "toTable": "Model Versions"
+      },
+      {
+        "name": "fa202d05-5991-5102-9746-cdbc045b056b",
+        "fromColumn": "model_version",
+        "fromTable": "dashboard_model_metrics",
+        "toColumn": "model_version",
+        "toTable": "Model Versions"
+      },
+      {
+        "name": "fd71b926-b10b-5766-84e9-c4fee8e03d17",
+        "fromColumn": "cluster_id",
+        "fromTable": "dashboard_segment_genres",
+        "toColumn": "cluster_id",
+        "toTable": "dashboard_segment_profiles"
+      },
+      {
+        "name": "ba1518b9-0f8e-51a5-9121-0a9c72cdfdf1",
+        "fromColumn": "cluster_id",
+        "fromTable": "dashboard_content_opportunities",
+        "toColumn": "cluster_id",
+        "toTable": "dashboard_segment_profiles"
+      },
+      {
+        "name": "87b5ceb0-7136-5f5e-9f4e-9a9b190c07bd",
+        "fromColumn": "genre",
+        "fromTable": "dashboard_segment_genres",
+        "toColumn": "genre",
+        "toTable": "Genres"
+      },
+      {
+        "name": "23a90086-6928-5f55-a633-10d57a4e27ff",
+        "fromColumn": "genre",
+        "fromTable": "movie_genres",
+        "toColumn": "genre",
+        "toTable": "Genres"
+      },
+      {
+        "name": "f9706294-9c76-52d0-9292-04a34efbaad4",
+        "fromColumn": "movie_id",
+        "fromTable": "dashboard_content_opportunities",
+        "toCardinality": "many",
+        "toColumn": "movie_id",
+        "toTable": "movie_genres"
+      }
+    ],
     "sourceQueryCulture": "en-US",
     "tables": [
       {
         "name": "_Measures",
-        "lineageTag": "aa0f6aca-bee8-51eb-a92b-2703bbd6985c",
         "columns": [
           {
             "name": "_",
             "dataType": "int64",
-            "lineageTag": "17c3920d-55fb-56da-a4fa-95a633b31313",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
-            "isDataTypeInferred": true,
-            "sourceColumn": "[_]",
             "formatString": "#,0",
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "17c3920d-55fb-56da-a4fa-95a633b31313",
+            "sourceColumn": "[_]",
             "summarizeBy": "sum",
-            "isHidden": true
+            "type": "calculatedTableColumn"
           }
         ],
-        "partitions": [
-          {
-            "name": "_Measures",
-            "mode": "import",
-            "source": {
-              "type": "calculated",
-              "expression": "ROW ( \"_\", 0 )"
-            }
-          }
-        ],
+        "lineageTag": "aa0f6aca-bee8-51eb-a92b-2703bbd6985c",
         "measures": [
           {
             "name": "Total Ratings",
@@ -82,13 +708,25 @@
           },
           {
             "name": "Predicted Like Probability",
-            "expression": "DIVIDE (\n    SUMX ( dashboard_content_opportunities,\n        dashboard_content_opportunities[predicted_like_probability] * dashboard_content_opportunities[test_support] ),\n    [Test Support]\n)",
+            "expression": [
+              "DIVIDE (",
+              "    SUMX ( dashboard_content_opportunities,",
+              "        dashboard_content_opportunities[predicted_like_probability] * dashboard_content_opportunities[test_support] ),",
+              "    [Test Support]",
+              ")"
+            ],
             "formatString": "0.0%",
             "lineageTag": "21155e05-f5eb-5436-a568-d5c6a3ddf257"
           },
           {
             "name": "Actual Positive Rate",
-            "expression": "DIVIDE (\n    SUMX ( dashboard_content_opportunities,\n        dashboard_content_opportunities[actual_positive_rate] * dashboard_content_opportunities[test_support] ),\n    [Test Support]\n)",
+            "expression": [
+              "DIVIDE (",
+              "    SUMX ( dashboard_content_opportunities,",
+              "        dashboard_content_opportunities[actual_positive_rate] * dashboard_content_opportunities[test_support] ),",
+              "    [Test Support]",
+              ")"
+            ],
             "formatString": "0.0%",
             "lineageTag": "273b0d89-81fc-5068-b926-0e7c8510c978"
           },
@@ -136,13 +774,23 @@
           },
           {
             "name": "Supported Movies",
-            "expression": "COUNTROWS (\n    FILTER ( VALUES ( dashboard_content_opportunities[movie_id] ), [Test Support] >= [Min Support Value] )\n)",
+            "expression": [
+              "COUNTROWS (",
+              "    FILTER ( VALUES ( dashboard_content_opportunities[movie_id] ), [Test Support] >= [Min Support Value] )",
+              ")"
+            ],
             "formatString": "#,0",
             "lineageTag": "da1c1dfe-7636-5735-aaf5-9b19d960f6d4"
           },
           {
             "name": "Test Metric",
-            "expression": "CALCULATE (\n    MAX ( dashboard_model_metrics[metric_value] ),\n    dashboard_model_metrics[split_name] = \"TEST\",\n    dashboard_model_metrics[model_name] = \"logistic_regression\"\n)",
+            "expression": [
+              "CALCULATE (",
+              "    MAX ( dashboard_model_metrics[metric_value] ),",
+              "    dashboard_model_metrics[split_name] = \"TEST\",",
+              "    dashboard_model_metrics[model_name] = \"logistic_regression\"",
+              ")"
+            ],
             "formatString": "0.0%",
             "lineageTag": "0f29b1c8-eaea-5d13-b877-a26443c663ea"
           },
@@ -196,83 +844,111 @@
           },
           {
             "name": "Prediction Rows (TEST)",
-            "expression": "CALCULATE (\n    SUM ( dashboard_confusion_matrix[row_count] ),\n    dashboard_confusion_matrix[data_split] = \"TEST\"\n)",
+            "expression": [
+              "CALCULATE (",
+              "    SUM ( dashboard_confusion_matrix[row_count] ),",
+              "    dashboard_confusion_matrix[data_split] = \"TEST\"",
+              ")"
+            ],
             "formatString": "#,0",
             "lineageTag": "ddd0c001-9a09-58ae-b336-a4b9ef7bf11a"
           },
           {
             "name": "Coefficient",
-            "expression": "IF (\n    LEFT ( SELECTEDVALUE ( dashboard_model_metrics[metric_name] ), 5 ) = \"coef_\",\n    CALCULATE (\n        MAX ( dashboard_model_metrics[metric_value] ),\n        dashboard_model_metrics[split_name] = \"TRAIN\",\n        dashboard_model_metrics[model_name] = \"logistic_regression\"\n    )\n)",
+            "expression": [
+              "IF (",
+              "    LEFT ( SELECTEDVALUE ( dashboard_model_metrics[metric_name] ), 5 ) = \"coef_\",",
+              "    CALCULATE (",
+              "        MAX ( dashboard_model_metrics[metric_value] ),",
+              "        dashboard_model_metrics[split_name] = \"TRAIN\",",
+              "        dashboard_model_metrics[model_name] = \"logistic_regression\"",
+              "    )",
+              ")"
+            ],
             "formatString": "0.000",
             "lineageTag": "cdde2b59-8ec7-5a48-af38-8b961653ce04"
           },
           {
             "name": "Silhouette",
-            "expression": "IF (\n    LEFT ( SELECTEDVALUE ( dashboard_model_metrics[metric_name] ), 12 ) = \"silhouette_k\",\n    CALCULATE ( MAX ( dashboard_model_metrics[metric_value] ), dashboard_model_metrics[model_name] = \"kmeans\" )\n)",
+            "expression": [
+              "IF (",
+              "    LEFT ( SELECTEDVALUE ( dashboard_model_metrics[metric_name] ), 12 ) = \"silhouette_k\",",
+              "    CALCULATE ( MAX ( dashboard_model_metrics[metric_value] ), dashboard_model_metrics[model_name] = \"kmeans\" )",
+              ")"
+            ],
             "formatString": "0.000",
             "lineageTag": "59f0b4e5-9ce6-54ee-bea0-6c1f31671551"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source": {
+              "expression": "ROW ( \"_\", 0 )",
+              "type": "calculated"
+            }
           }
         ]
       },
       {
         "name": "dashboard_kpis",
-        "lineageTag": "4fe42fc6-7422-5ebd-b76c-8bb8d7a7fe45",
         "columns": [
           {
             "name": "total_ratings",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "179a1c4d-c969-51b2-bb1b-74ea4f1588ff",
             "sourceColumn": "total_ratings",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "total_users",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "1ec73bb3-f8f5-5f09-82d5-359fd6e20b6d",
             "sourceColumn": "total_users",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "total_movies",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "6e607dcb-90f0-5523-bca1-b8e969a9c6aa",
             "sourceColumn": "total_movies",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "total_tags",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "e7418002-562e-5e15-822f-ec167583787a",
             "sourceColumn": "total_tags",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "average_rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "4ef7b5dc-bdcb-5901-9393-29e261a34e30",
             "sourceColumn": "average_rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "positive_rating_rate",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "7b8d5f1c-7a83-5280-a62f-b23f3e572295",
             "sourceColumn": "positive_rating_rate",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "4fe42fc6-7422-5ebd-b76c-8bb8d7a7fe45",
         "partitions": [
           {
             "name": "dashboard_kpis",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -280,46 +956,46 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"total_ratings\", Int64.Type}, {\"total_users\", Int64.Type}, {\"total_movies\", Int64.Type}, {\"total_tags\", Int64.Type}, {\"average_rating\", type number}, {\"positive_rating_rate\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_rating_distribution",
-        "lineageTag": "255b8aff-3577-5710-b558-f49b8824bacc",
         "columns": [
           {
             "name": "rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "e899f511-e76e-5c13-8a14-ca77b7d0f42a",
             "sourceColumn": "rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "none"
           },
           {
             "name": "rating_count",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "a3d75e54-4681-5a83-8ab1-c8e8bda1cfae",
             "sourceColumn": "rating_count",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "rating_share",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "b881a0dd-bfae-53be-b11f-6820369a10ff",
             "sourceColumn": "rating_share",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "255b8aff-3577-5710-b558-f49b8824bacc",
         "partitions": [
           {
             "name": "dashboard_rating_distribution",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -327,14 +1003,14 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"rating\", type number}, {\"rating_count\", Int64.Type}, {\"rating_share\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_genre_kpis",
-        "lineageTag": "de0958eb-8eff-5e8e-9775-6e3c40bbd420",
         "columns": [
           {
             "name": "genre",
@@ -346,34 +1022,34 @@
           {
             "name": "rating_count",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "16c215b1-4b7b-5cc5-a046-8562058e6be2",
             "sourceColumn": "rating_count",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "a18dcd13-bf39-54a9-ac43-b46138a6d50a",
             "sourceColumn": "avg_rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "positive_rate",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "2e679bb9-7f1f-531d-9e15-2634d5ec626a",
             "sourceColumn": "positive_rate",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "de0958eb-8eff-5e8e-9775-6e3c40bbd420",
         "partitions": [
           {
             "name": "dashboard_genre_kpis",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -381,21 +1057,21 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"genre\", type text}, {\"rating_count\", Int64.Type}, {\"avg_rating\", type number}, {\"positive_rate\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_movie_popularity",
-        "lineageTag": "9ef0cc24-7bd0-5318-b8c6-bdf374e9d37d",
         "columns": [
           {
             "name": "movie_id",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "1d3911a5-6423-5a4a-bfba-a5ca36528c9b",
             "sourceColumn": "movie_id",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
@@ -415,34 +1091,34 @@
           {
             "name": "rating_count",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "94bb050d-f393-5c37-9749-7722faff1233",
             "sourceColumn": "rating_count",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "4d3b988f-e9ca-5eab-b9b9-2121d3309f2f",
             "sourceColumn": "avg_rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "positive_rate",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "50287a68-9711-5f9c-9e08-898daf314933",
             "sourceColumn": "positive_rate",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "9ef0cc24-7bd0-5318-b8c6-bdf374e9d37d",
         "partitions": [
           {
             "name": "dashboard_movie_popularity",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -450,14 +1126,14 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"movie_id\", Int64.Type}, {\"title\", type text}, {\"genres\", type text}, {\"rating_count\", Int64.Type}, {\"avg_rating\", type number}, {\"positive_rate\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_split_summary",
-        "lineageTag": "5dbf1740-9827-58ae-ba2c-6c41a4bb8426",
         "columns": [
           {
             "name": "data_split",
@@ -469,34 +1145,35 @@
           {
             "name": "rows_in_split",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "fd479446-1580-5dfb-a21e-d9012ad19fd8",
             "sourceColumn": "rows_in_split",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "period_start",
             "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd hh:nn",
             "lineageTag": "e514da54-ed6f-592e-a39f-34aa7ec4aabb",
             "sourceColumn": "period_start",
-            "formatString": "yyyy-mm-dd hh:nn",
             "summarizeBy": "none"
           },
           {
             "name": "period_end",
             "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd hh:nn",
             "lineageTag": "f728f577-5cc3-5cc5-a988-e2012ef86212",
             "sourceColumn": "period_end",
-            "formatString": "yyyy-mm-dd hh:nn",
             "summarizeBy": "none"
           }
         ],
+        "excludeFromModelRefresh": true,
+        "lineageTag": "5dbf1740-9827-58ae-ba2c-6c41a4bb8426",
         "partitions": [
           {
             "name": "dashboard_split_summary",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -504,22 +1181,21 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"data_split\", type text}, {\"rows_in_split\", Int64.Type}, {\"period_start\", type datetime}, {\"period_end\", type datetime}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
-        ],
-        "excludeFromModelRefresh": true
+        ]
       },
       {
         "name": "dashboard_segment_profiles",
-        "lineageTag": "6f4aef0d-4a07-5527-b75a-33d33f68818a",
         "columns": [
           {
             "name": "cluster_id",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "0bb8b366-97c7-5c88-ab34-9529fbb0dc6f",
             "sourceColumn": "cluster_id",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
@@ -532,58 +1208,58 @@
           {
             "name": "user_count",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "6267e45f-5301-5824-b967-fb4f0df037f3",
             "sourceColumn": "user_count",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_user_ratings",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "5daa08b9-92ed-5396-9662-82ca43cd2cdc",
             "sourceColumn": "avg_user_ratings",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "8ecd46d9-6698-5926-aa80-ff901c84d083",
             "sourceColumn": "avg_rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_positive_rate",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "6eb97715-e672-532b-b82c-d6f576c6fce9",
             "sourceColumn": "avg_positive_rate",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_rating_stddev",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "0a74e282-c611-53d4-870d-5d812a107f5e",
             "sourceColumn": "avg_rating_stddev",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_active_days",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "90951c6a-1394-5130-b219-51a8eeea1121",
             "sourceColumn": "avg_active_days",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "6f4aef0d-4a07-5527-b75a-33d33f68818a",
         "partitions": [
           {
             "name": "dashboard_segment_profiles",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -591,21 +1267,27 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"cluster_id\", Int64.Type}, {\"segment_name\", type text}, {\"user_count\", Int64.Type}, {\"avg_user_ratings\", type number}, {\"avg_rating\", type number}, {\"avg_positive_rate\", type number}, {\"avg_rating_stddev\", type number}, {\"avg_active_days\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_segment_genres",
-        "lineageTag": "b0d49857-9ff7-5e9e-a63d-39d7d72465bb",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
         "columns": [
           {
             "name": "cluster_id",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "02a2cec1-17f5-5924-aaf7-af0dd4d67039",
             "sourceColumn": "cluster_id",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
@@ -625,42 +1307,42 @@
           {
             "name": "users_with_genre",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "1d6561c6-e240-5a23-bebf-756a573f664c",
             "sourceColumn": "users_with_genre",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "genre_rating_count",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "bb29e0ec-62b1-5203-a8dd-6850829efd99",
             "sourceColumn": "genre_rating_count",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_genre_rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "6cae0187-97d2-5394-9739-e93dcfcc6e84",
             "sourceColumn": "avg_genre_rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "avg_genre_positive_rate",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "231a9cec-788f-5a49-b83c-5d53590e6954",
             "sourceColumn": "avg_genre_positive_rate",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "b0d49857-9ff7-5e9e-a63d-39d7d72465bb",
         "partitions": [
           {
             "name": "dashboard_segment_genres",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -668,14 +1350,14 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"cluster_id\", Int64.Type}, {\"segment_name\", type text}, {\"genre\", type text}, {\"users_with_genre\", Int64.Type}, {\"genre_rating_count\", Int64.Type}, {\"avg_genre_rating\", type number}, {\"avg_genre_positive_rate\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_content_opportunities",
-        "lineageTag": "cabc6c55-b3fd-5971-a062-1b30989e2cab",
         "columns": [
           {
             "name": "model_version",
@@ -687,9 +1369,9 @@
           {
             "name": "cluster_id",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "1c5a8e2e-10d7-5732-9484-3e84c102f8b8",
             "sourceColumn": "cluster_id",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
@@ -702,9 +1384,9 @@
           {
             "name": "movie_id",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "dccfb865-f932-56b4-9953-0cb23a6cf45a",
             "sourceColumn": "movie_id",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
@@ -724,50 +1406,50 @@
           {
             "name": "test_support",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "f31c7ab2-021f-5135-aef3-bdccbde3a1cc",
             "sourceColumn": "test_support",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "predicted_like_probability",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "4ef2b655-6c00-5d93-9d95-32023502e582",
             "sourceColumn": "predicted_like_probability",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           },
           {
             "name": "actual_positive_rate",
             "dataType": "double",
+            "formatString": "0.0%",
             "lineageTag": "86be7a4f-8e99-562e-b907-a449e3eb6f40",
             "sourceColumn": "actual_positive_rate",
-            "formatString": "0.0%",
             "summarizeBy": "sum"
           },
           {
             "name": "train_popularity",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "92db806d-feb5-56e3-8907-6e1676da5919",
             "sourceColumn": "train_popularity",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           },
           {
             "name": "train_avg_rating",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "b4e76dc4-f932-5d97-9386-1f0d0357d086",
             "sourceColumn": "train_avg_rating",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "cabc6c55-b3fd-5971-a062-1b30989e2cab",
         "partitions": [
           {
             "name": "dashboard_content_opportunities",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -775,14 +1457,14 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"model_version\", type text}, {\"cluster_id\", Int64.Type}, {\"segment_name\", type text}, {\"movie_id\", Int64.Type}, {\"title\", type text}, {\"genres\", type text}, {\"test_support\", Int64.Type}, {\"predicted_like_probability\", type number}, {\"actual_positive_rate\", type number}, {\"train_popularity\", Int64.Type}, {\"train_avg_rating\", type number}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_confusion_matrix",
-        "lineageTag": "0f3335c3-a551-5221-bb6b-82663f5c762c",
         "columns": [
           {
             "name": "model_version",
@@ -801,34 +1483,34 @@
           {
             "name": "actual_liked",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "2f3a4e14-7b89-5d66-945c-b1520a301274",
             "sourceColumn": "actual_liked",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
             "name": "predicted_liked",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "53d0f2cc-a955-5d2a-a3bc-1e90a776348c",
             "sourceColumn": "predicted_liked",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
             "name": "row_count",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "830b7ec0-62e1-5cb9-a8de-cead6fb029c3",
             "sourceColumn": "row_count",
-            "formatString": "#,0",
             "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "0f3335c3-a551-5221-bb6b-82663f5c762c",
         "partitions": [
           {
             "name": "dashboard_confusion_matrix",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -836,14 +1518,14 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"model_version\", type text}, {\"data_split\", type text}, {\"actual_liked\", Int64.Type}, {\"predicted_liked\", Int64.Type}, {\"row_count\", Int64.Type}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "dashboard_model_metrics",
-        "lineageTag": "aa667f3d-251b-596e-a65f-1ddf84999695",
         "columns": [
           {
             "name": "model_name",
@@ -876,26 +1558,26 @@
           {
             "name": "metric_value",
             "dataType": "double",
+            "formatString": "#,0.0000",
             "lineageTag": "4a7028cf-82cb-545f-95e0-18544ca875e7",
             "sourceColumn": "metric_value",
-            "formatString": "#,0.0000",
             "summarizeBy": "sum"
           },
           {
             "name": "run_timestamp",
             "dataType": "dateTime",
+            "formatString": "yyyy-mm-dd hh:nn",
             "lineageTag": "11d1830a-6180-55b2-93df-f2bce8efe693",
             "sourceColumn": "run_timestamp",
-            "formatString": "yyyy-mm-dd hh:nn",
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "aa667f3d-251b-596e-a65f-1ddf84999695",
         "partitions": [
           {
             "name": "dashboard_model_metrics",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -903,21 +1585,21 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"model_name\", type text}, {\"model_version\", type text}, {\"split_name\", type text}, {\"metric_name\", type text}, {\"metric_value\", type number}, {\"run_timestamp\", type datetime}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "movie_genres",
-        "lineageTag": "b0131ec7-622c-5174-b92c-c36e8cb5eca0",
         "columns": [
           {
             "name": "movie_id",
             "dataType": "int64",
+            "formatString": "#,0",
             "lineageTag": "dab209a8-090f-5a1a-b6b7-5b9a38a15849",
             "sourceColumn": "movie_id",
-            "formatString": "#,0",
             "summarizeBy": "none"
           },
           {
@@ -928,12 +1610,12 @@
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "b0131ec7-622c-5174-b92c-c36e8cb5eca0",
         "partitions": [
           {
             "name": "movie_genres",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = MySQL.Database(MySQLServer, MySQLDatabase, [ReturnSingleDatabase = true]),",
@@ -941,245 +1623,173 @@
                 "    Typed = Table.TransformColumnTypes(Data, {{\"movie_id\", Int64.Type}, {\"genre\", type text}})",
                 "in",
                 "    Typed"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "Model Versions",
-        "lineageTag": "1b0e1b80-f741-59ab-8ac3-2033028fe568",
         "columns": [
           {
             "name": "model_version",
             "dataType": "string",
-            "lineageTag": "3882271a-1d67-5d45-88f1-30fcd0ebd4f1",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
             "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "3882271a-1d67-5d45-88f1-30fcd0ebd4f1",
             "sourceColumn": "[model_version]",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           }
         ],
+        "lineageTag": "1b0e1b80-f741-59ab-8ac3-2033028fe568",
         "partitions": [
           {
             "name": "Model Versions",
             "mode": "import",
             "source": {
-              "type": "calculated",
-              "expression": "DISTINCT (\n    UNION (\n        SELECTCOLUMNS ( dashboard_content_opportunities, \"model_version\", dashboard_content_opportunities[model_version] ),\n        SELECTCOLUMNS ( dashboard_confusion_matrix, \"model_version\", dashboard_confusion_matrix[model_version] ),\n        SELECTCOLUMNS ( dashboard_model_metrics, \"model_version\", dashboard_model_metrics[model_version] )\n    )\n)"
+              "expression": [
+                "DISTINCT (",
+                "    UNION (",
+                "        SELECTCOLUMNS ( dashboard_content_opportunities, \"model_version\", dashboard_content_opportunities[model_version] ),",
+                "        SELECTCOLUMNS ( dashboard_confusion_matrix, \"model_version\", dashboard_confusion_matrix[model_version] ),",
+                "        SELECTCOLUMNS ( dashboard_model_metrics, \"model_version\", dashboard_model_metrics[model_version] )",
+                "    )",
+                ")"
+              ],
+              "type": "calculated"
             }
           }
         ]
       },
       {
         "name": "Genres",
-        "lineageTag": "5ac318b2-fd9b-537b-ba15-6165d7118672",
         "columns": [
           {
             "name": "genre",
             "dataType": "string",
-            "lineageTag": "69b74256-08a8-57e3-946c-a83db459de6a",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
             "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "69b74256-08a8-57e3-946c-a83db459de6a",
             "sourceColumn": "[genre]",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           }
         ],
+        "lineageTag": "5ac318b2-fd9b-537b-ba15-6165d7118672",
         "partitions": [
           {
             "name": "Genres",
             "mode": "import",
             "source": {
-              "type": "calculated",
-              "expression": "DISTINCT (\n    UNION (\n        SELECTCOLUMNS ( movie_genres, \"genre\", movie_genres[genre] ),\n        SELECTCOLUMNS ( dashboard_segment_genres, \"genre\", dashboard_segment_genres[genre] )\n    )\n)"
+              "expression": [
+                "DISTINCT (",
+                "    UNION (",
+                "        SELECTCOLUMNS ( movie_genres, \"genre\", movie_genres[genre] ),",
+                "        SELECTCOLUMNS ( dashboard_segment_genres, \"genre\", dashboard_segment_genres[genre] )",
+                "    )",
+                ")"
+              ],
+              "type": "calculated"
             }
           }
         ]
       },
       {
         "name": "Min Support",
-        "lineageTag": "d6f871ef-75e4-50c0-b9c7-5e53e2817308",
         "columns": [
           {
             "name": "Min Support",
             "dataType": "int64",
-            "lineageTag": "dfaef785-99fa-5f3b-8c82-0fbee2182367",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
-            "isDataTypeInferred": true,
-            "sourceColumn": "[Min Support]",
             "formatString": "#,0",
-            "summarizeBy": "none"
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "dfaef785-99fa-5f3b-8c82-0fbee2182367",
+            "sourceColumn": "[Min Support]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           }
         ],
+        "lineageTag": "d6f871ef-75e4-50c0-b9c7-5e53e2817308",
         "partitions": [
           {
             "name": "Min Support",
             "mode": "import",
             "source": {
-              "type": "calculated",
-              "expression": "SELECTCOLUMNS ( GENERATESERIES ( 0, 500, 10 ), \"Min Support\", [Value] )"
+              "expression": "SELECTCOLUMNS ( GENERATESERIES ( 0, 500, 10 ), \"Min Support\", [Value] )",
+              "type": "calculated"
             }
           }
         ]
       },
       {
         "name": "Top Movies",
-        "lineageTag": "6546cd9d-12f0-54ec-aa75-fc69762c2855",
         "columns": [
           {
             "name": "title",
             "dataType": "string",
-            "lineageTag": "c9f0a6d7-a780-5f95-a0ad-b27229c76b3a",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
             "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "c9f0a6d7-a780-5f95-a0ad-b27229c76b3a",
             "sourceColumn": "[title]",
-            "summarizeBy": "none"
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           },
           {
             "name": "rating_count",
             "dataType": "int64",
-            "lineageTag": "8a7a0dbb-af4c-5866-a548-a61bfc41678f",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
-            "isDataTypeInferred": true,
-            "sourceColumn": "[rating_count]",
             "formatString": "#,0",
-            "summarizeBy": "none"
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "8a7a0dbb-af4c-5866-a548-a61bfc41678f",
+            "sourceColumn": "[rating_count]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           },
           {
             "name": "avg_rating",
             "dataType": "double",
-            "lineageTag": "010bdd08-acb1-53c6-b719-506b9472b87d",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
-            "isDataTypeInferred": true,
-            "sourceColumn": "[avg_rating]",
             "formatString": "#,0.0000",
-            "summarizeBy": "none"
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "010bdd08-acb1-53c6-b719-506b9472b87d",
+            "sourceColumn": "[avg_rating]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           },
           {
             "name": "positive_rate",
             "dataType": "double",
-            "lineageTag": "21a10002-0418-5eef-8296-517e2bfbaa7b",
-            "type": "calculatedTableColumn",
-            "isNameInferred": true,
-            "isDataTypeInferred": true,
-            "sourceColumn": "[positive_rate]",
             "formatString": "0.0%",
-            "summarizeBy": "none"
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "21a10002-0418-5eef-8296-517e2bfbaa7b",
+            "sourceColumn": "[positive_rate]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           }
         ],
+        "lineageTag": "6546cd9d-12f0-54ec-aa75-fc69762c2855",
         "partitions": [
           {
             "name": "Top Movies",
             "mode": "import",
             "source": {
-              "type": "calculated",
-              "expression": "SELECTCOLUMNS (\n    TOPN ( 20, dashboard_movie_popularity, dashboard_movie_popularity[avg_rating], DESC,\n           dashboard_movie_popularity[rating_count], DESC ),\n    \"title\", dashboard_movie_popularity[title],\n    \"rating_count\", dashboard_movie_popularity[rating_count],\n    \"avg_rating\", dashboard_movie_popularity[avg_rating],\n    \"positive_rate\", dashboard_movie_popularity[positive_rate]\n)"
+              "expression": [
+                "SELECTCOLUMNS (",
+                "    TOPN ( 20, dashboard_movie_popularity, dashboard_movie_popularity[avg_rating], DESC,",
+                "           dashboard_movie_popularity[rating_count], DESC ),",
+                "    \"title\", dashboard_movie_popularity[title],",
+                "    \"rating_count\", dashboard_movie_popularity[rating_count],",
+                "    \"avg_rating\", dashboard_movie_popularity[avg_rating],",
+                "    \"positive_rate\", dashboard_movie_popularity[positive_rate]",
+                ")"
+              ],
+              "type": "calculated"
             }
           }
         ]
-      }
-    ],
-    "relationships": [
-      {
-        "name": "dadbabc8-6983-5948-917b-1a24a8c82ed5",
-        "fromTable": "dashboard_content_opportunities",
-        "fromColumn": "model_version",
-        "toTable": "Model Versions",
-        "toColumn": "model_version"
-      },
-      {
-        "name": "efc53084-68a6-5272-8447-7f68d1e2f8a8",
-        "fromTable": "dashboard_confusion_matrix",
-        "fromColumn": "model_version",
-        "toTable": "Model Versions",
-        "toColumn": "model_version"
-      },
-      {
-        "name": "fa202d05-5991-5102-9746-cdbc045b056b",
-        "fromTable": "dashboard_model_metrics",
-        "fromColumn": "model_version",
-        "toTable": "Model Versions",
-        "toColumn": "model_version"
-      },
-      {
-        "name": "fd71b926-b10b-5766-84e9-c4fee8e03d17",
-        "fromTable": "dashboard_segment_genres",
-        "fromColumn": "cluster_id",
-        "toTable": "dashboard_segment_profiles",
-        "toColumn": "cluster_id"
-      },
-      {
-        "name": "ba1518b9-0f8e-51a5-9121-0a9c72cdfdf1",
-        "fromTable": "dashboard_content_opportunities",
-        "fromColumn": "cluster_id",
-        "toTable": "dashboard_segment_profiles",
-        "toColumn": "cluster_id"
-      },
-      {
-        "name": "87b5ceb0-7136-5f5e-9f4e-9a9b190c07bd",
-        "fromTable": "dashboard_segment_genres",
-        "fromColumn": "genre",
-        "toTable": "Genres",
-        "toColumn": "genre"
-      },
-      {
-        "name": "23a90086-6928-5f55-a633-10d57a4e27ff",
-        "fromTable": "movie_genres",
-        "fromColumn": "genre",
-        "toTable": "Genres",
-        "toColumn": "genre"
-      },
-      {
-        "name": "f9706294-9c76-52d0-9292-04a34efbaad4",
-        "fromTable": "dashboard_content_opportunities",
-        "fromColumn": "movie_id",
-        "toTable": "movie_genres",
-        "toColumn": "movie_id",
-        "fromCardinality": "many",
-        "toCardinality": "many",
-        "crossFilteringBehavior": "oneDirection"
-      }
-    ],
-    "expressions": [
-      {
-        "name": "MySQLServer",
-        "kind": "m",
-        "expression": "\"localhost:3306\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
-        "lineageTag": "898ff97a-ae12-5046-aa16-472d6f6541f4",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Text"
-          }
-        ]
-      },
-      {
-        "name": "MySQLDatabase",
-        "kind": "m",
-        "expression": "\"movielens_strategy\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]",
-        "lineageTag": "7de089b0-84d2-5453-973e-2ae9cb8dd0f6",
-        "annotations": [
-          {
-            "name": "PBI_ResultType",
-            "value": "Text"
-          }
-        ]
-      }
-    ],
-    "annotations": [
-      {
-        "name": "PBI_QueryOrder",
-        "value": "[\"MySQLServer\", \"MySQLDatabase\", \"dashboard_kpis\", \"dashboard_rating_distribution\", \"dashboard_genre_kpis\", \"dashboard_movie_popularity\", \"dashboard_split_summary\", \"dashboard_segment_profiles\", \"dashboard_segment_genres\", \"dashboard_content_opportunities\", \"dashboard_confusion_matrix\", \"dashboard_model_metrics\", \"movie_genres\"]"
-      },
-      {
-        "name": "__PBI_TimeIntelligenceEnabled",
-        "value": "0"
       }
     ]
   }

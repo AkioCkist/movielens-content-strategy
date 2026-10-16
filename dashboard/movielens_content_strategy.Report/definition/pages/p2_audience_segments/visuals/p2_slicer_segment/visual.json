@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p2_slicer_segment",
   "position": {
     "x": 20,
     "y": 20,
     "z": 0,
-    "width": 300,
     "height": 70,
+    "width": 300,
     "tabOrder": 0
   },
   "visual": {
@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "dashboard_segment_profiles.segment_name",
-              "nativeQueryRef": "segment_name"
+              "nativeQueryRef": "segment_name",
+              "active": true
             }
           ]
         }

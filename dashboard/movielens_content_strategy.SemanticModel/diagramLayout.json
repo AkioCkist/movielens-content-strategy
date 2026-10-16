@@ -1,0 +1,230 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1554.705535049271,
+            "y": 191.76173193159514
+          },
+          "nodeIndex": "_Measures",
+          "nodeLineageTag": "aa0f6aca-bee8-51eb-a92b-2703bbd6985c",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 19.940904905325738
+          },
+          "nodeIndex": "dashboard_confusion_matrix",
+          "nodeLineageTag": "0f3335c3-a551-5221-bb6b-82663f5c762c",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 624.197523903749,
+            "y": 137.36773279341821
+          },
+          "nodeIndex": "dashboard_content_opportunities",
+          "nodeLineageTag": "cabc6c55-b3fd-5971-a062-1b30989e2cab",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1838.705535049271,
+            "y": 253.76173193159514
+          },
+          "nodeIndex": "dashboard_genre_kpis",
+          "nodeLineageTag": "de0958eb-8eff-5e8e-9775-6e3c40bbd420",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2122.705535049271,
+            "y": 229.76173193159514
+          },
+          "nodeIndex": "dashboard_kpis",
+          "nodeLineageTag": "4fe42fc6-7422-5ebd-b76c-8bb8d7a7fe45",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50.006613669533408,
+            "y": 409.52346386319039
+          },
+          "nodeIndex": "dashboard_model_metrics",
+          "nodeLineageTag": "aa667f3d-251b-596e-a65f-1ddf84999695",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2406.705535049271,
+            "y": 229.76173193159514
+          },
+          "nodeIndex": "dashboard_movie_popularity",
+          "nodeLineageTag": "9ef0cc24-7bd0-5318-b8c6-bdf374e9d37d",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2690.705535049271,
+            "y": 265.76173193159514
+          },
+          "nodeIndex": "dashboard_rating_distribution",
+          "nodeLineageTag": "255b8aff-3577-5710-b558-f49b8824bacc",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1197.3061846664191,
+            "y": 92.779782327431121
+          },
+          "nodeIndex": "dashboard_segment_genres",
+          "nodeLineageTag": "b0d49857-9ff7-5e9e-a63d-39d7d72465bb",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 911.25372745660547,
+            "y": -50
+          },
+          "nodeIndex": "dashboard_segment_profiles",
+          "nodeLineageTag": "6f4aef0d-4a07-5527-b75a-33d33f68818a",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2974.705535049271,
+            "y": 253.76173193159514
+          },
+          "nodeIndex": "dashboard_split_summary",
+          "nodeLineageTag": "5dbf1740-9827-58ae-ba2c-6c41a4bb8426",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1320.7055350492712,
+            "y": 392.54526979837351
+          },
+          "nodeIndex": "Genres",
+          "nodeLineageTag": "5ac318b2-fd9b-537b-ba15-6165d7118672",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3258.705535049271,
+            "y": 241.76173193159514
+          },
+          "nodeIndex": "Min Support",
+          "nodeLineageTag": "d6f871ef-75e4-50c0-b9c7-5e53e2817308",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 337.04450759924464,
+            "y": 206.01461808535993
+          },
+          "nodeIndex": "Model Versions",
+          "nodeLineageTag": "1b0e1b80-f741-59ab-8ac3-2033028fe568",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1033.6342322505589,
+            "y": 490.8535274123409
+          },
+          "nodeIndex": "movie_genres",
+          "nodeLineageTag": "b0131ec7-622c-5174-b92c-c36e8cb5eca0",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3542.705535049271,
+            "y": 253.76173193159514
+          },
+          "nodeIndex": "Top Movies",
+          "nodeLineageTag": "6546cd9d-12f0-54ec-aa75-fc69762c2855",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

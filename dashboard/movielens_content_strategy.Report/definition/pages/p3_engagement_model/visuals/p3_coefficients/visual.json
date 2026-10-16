@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p3_coefficients",
   "position": {
     "x": 540,
     "y": 130,
     "z": 8000,
-    "width": 720,
     "height": 570,
+    "width": 720,
     "tabOrder": 8000
   },
   "visual": {
@@ -28,6 +28,7 @@
               },
               "queryRef": "dashboard_model_metrics.metric_name",
               "nativeQueryRef": "metric_name",
+              "active": true,
               "displayName": "Feature"
             }
           ]
@@ -66,8 +67,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "visualContainerObjects": {
