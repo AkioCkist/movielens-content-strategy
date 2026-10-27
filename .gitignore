@@ -6,6 +6,7 @@ data/ml-10M100K/
 credentials*
 __pycache__/
 *.pyc
+/venv/
 
 # Power BI project: per-user settings and data cache
 **/.pbi/localSettings.json
