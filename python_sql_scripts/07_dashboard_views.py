@@ -46,6 +46,26 @@ VIEWS = [
     FROM train_movie_stats ms JOIN movies m ON m.movie_id=ms.movie_id
     WHERE ms.rating_count>=100
     """,
+    # Bayesian average with m = 100 prior ratings pulls low-count titles towards
+    # the TRAIN mean; wilson_positive_low is the 95% Wilson lower bound.
+    """
+    CREATE OR REPLACE VIEW dashboard_movie_adjusted_scores AS
+    SELECT m.movie_id, m.title, m.genres, ms.rating_count, ms.avg_rating,
+           (ms.rating_sum + 100*g.global_avg)/(ms.rating_count + 100) bayesian_avg_rating,
+           ms.positive_rate,
+           (ms.positive_count + 100*g.global_positive_rate)/(ms.rating_count + 100)
+               bayesian_positive_rate,
+           (ms.positive_rate + 1.9208/ms.rating_count
+               - 1.96*SQRT((ms.positive_rate*(1-ms.positive_rate) + 0.9604/ms.rating_count)
+                           /ms.rating_count))
+               /(1 + 3.8416/ms.rating_count) wilson_positive_low
+    FROM train_movie_stats ms JOIN movies m ON m.movie_id=ms.movie_id
+    CROSS JOIN (
+        SELECT SUM(rating_sum)/SUM(rating_count) global_avg,
+               SUM(positive_count)/SUM(rating_count) global_positive_rate
+        FROM train_movie_stats
+    ) g
+    """,
     # Joins 10M rows (a few minutes); the split only changes when step 4 reruns.
     """
     CREATE OR REPLACE VIEW dashboard_split_summary AS
@@ -91,6 +111,21 @@ VIEWS = [
     GROUP BY rp.model_version, rp.cluster_id, seg.segment_name, rp.movie_id, m.title, m.genres,
              ms.rating_count, ms.avg_rating
     """,
+    # 95% Wilson interval of the TEST positive rate per segment-title cell.
+    """
+    CREATE OR REPLACE VIEW dashboard_opportunity_intervals AS
+    SELECT o.model_version, o.cluster_id, o.segment_name, o.movie_id, o.title, o.test_support,
+           o.predicted_like_probability, o.actual_positive_rate,
+           (o.actual_positive_rate + 1.9208/o.test_support
+               - 1.96*SQRT((o.actual_positive_rate*(1-o.actual_positive_rate)
+                            + 0.9604/o.test_support)/o.test_support))
+               /(1 + 3.8416/o.test_support) positive_rate_ci_low,
+           (o.actual_positive_rate + 1.9208/o.test_support
+               + 1.96*SQRT((o.actual_positive_rate*(1-o.actual_positive_rate)
+                            + 0.9604/o.test_support)/o.test_support))
+               /(1 + 3.8416/o.test_support) positive_rate_ci_high
+    FROM dashboard_content_opportunities o
+    """,
     # Four rows per model version and split instead of millions of predictions.
     """
     CREATE OR REPLACE VIEW dashboard_confusion_matrix AS
@@ -119,9 +154,11 @@ def main() -> None:
         results = []
         for view in (
             "dashboard_kpis", "dashboard_rating_distribution", "dashboard_genre_kpis",
-            "dashboard_movie_popularity", "dashboard_split_summary",
+            "dashboard_movie_popularity", "dashboard_movie_adjusted_scores",
+            "dashboard_split_summary",
             "dashboard_segment_profiles", "dashboard_segment_genres",
-            "dashboard_content_opportunities", "dashboard_confusion_matrix",
+            "dashboard_content_opportunities", "dashboard_opportunity_intervals",
+            "dashboard_confusion_matrix",
             "dashboard_model_metrics",
         ):
             columns, rows = run_timed(

@@ -63,6 +63,37 @@ FROM train_movie_stats AS ms
 JOIN movies AS m ON m.movie_id = ms.movie_id
 WHERE ms.rating_count >= 100;
 
+-- Page 1: fair comparison of titles with very different rating counts.
+-- Bayesian average: (v * R + m * C) / (v + m), where v is the title's TRAIN
+-- rating count, R its average, C the TRAIN average of all ratings and
+-- m = 100 prior ratings (same threshold as dashboard_movie_popularity).
+-- A title with few ratings is pulled towards C; a title with thousands keeps
+-- its own average. wilson_positive_low is the 95% Wilson lower bound of the
+-- positive rate: the rate we are 95% sure the title at least reaches.
+CREATE OR REPLACE VIEW dashboard_movie_adjusted_scores AS
+SELECT
+    m.movie_id,
+    m.title,
+    m.genres,
+    ms.rating_count,
+    ms.avg_rating,
+    (ms.rating_sum + 100 * g.global_avg) / (ms.rating_count + 100) AS bayesian_avg_rating,
+    ms.positive_rate,
+    (ms.positive_count + 100 * g.global_positive_rate) / (ms.rating_count + 100)
+        AS bayesian_positive_rate,
+    (ms.positive_rate + 1.9208 / ms.rating_count
+        - 1.96 * SQRT((ms.positive_rate * (1 - ms.positive_rate) + 0.9604 / ms.rating_count)
+                      / ms.rating_count))
+        / (1 + 3.8416 / ms.rating_count) AS wilson_positive_low
+FROM train_movie_stats AS ms
+JOIN movies AS m ON m.movie_id = ms.movie_id
+CROSS JOIN (
+    SELECT
+        SUM(rating_sum) / SUM(rating_count) AS global_avg,
+        SUM(positive_count) / SUM(rating_count) AS global_positive_rate
+    FROM train_movie_stats
+) AS g;
+
 -- Page 5: rows and time period of each split. Joins 10M rows, so it takes a
 -- few minutes; the split only changes when 04 is rerun.
 CREATE OR REPLACE VIEW dashboard_split_summary AS
@@ -135,6 +166,29 @@ GROUP BY
     m.genres,
     ms.rating_count,
     ms.avg_rating;
+
+-- Page 4: 95% Wilson interval of the observed TEST positive rate for each
+-- segment-title cell. A cell with few TEST ratings gets a wide interval, so a
+-- title is only treated as a strong candidate when ci_low is still high.
+CREATE OR REPLACE VIEW dashboard_opportunity_intervals AS
+SELECT
+    o.model_version,
+    o.cluster_id,
+    o.segment_name,
+    o.movie_id,
+    o.title,
+    o.test_support,
+    o.predicted_like_probability,
+    o.actual_positive_rate,
+    (o.actual_positive_rate + 1.9208 / o.test_support
+        - 1.96 * SQRT((o.actual_positive_rate * (1 - o.actual_positive_rate)
+                       + 0.9604 / o.test_support) / o.test_support))
+        / (1 + 3.8416 / o.test_support) AS positive_rate_ci_low,
+    (o.actual_positive_rate + 1.9208 / o.test_support
+        + 1.96 * SQRT((o.actual_positive_rate * (1 - o.actual_positive_rate)
+                       + 0.9604 / o.test_support) / o.test_support))
+        / (1 + 3.8416 / o.test_support) AS positive_rate_ci_high
+FROM dashboard_content_opportunities AS o;
 
 -- Page 3: confusion matrix per model version and split (4 rows per version),
 -- so Power BI does not have to import millions of prediction rows.
